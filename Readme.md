@@ -5,14 +5,17 @@
 - 将执行文件目录`D:\Hugo\bin`添加到电脑系统环境变量`path`中
 - cmd输入`hugo version`，提示版本信息则Hugo安装成功。
 
-
 ## 初始化
 
 ```markup
 hugo new site blog
 git init
-
 git remote add origin git@github.com:bayidatianshi/blog.git
+git add .
+git commit -m "init"
+git push -u origin master
+cd blog
+hugo new theme my-theme
 ```
 
 ## Hugo教程 ##
@@ -24,12 +27,12 @@ git remote add origin git@github.com:bayidatianshi/blog.git
 
 ### 创建网站骨架和主题目录 ###
 - 安装hugo后，到项目目录，输入以下命令，  
-    `hugo new site study-hugo  # 创建网站骨架`  
-	`cd study-hugo`  
-	`hugo new theme study-theme  # 自建主题目录`
+    `hugo new site blog  # 创建网站骨架`  
+	`cd blog`  
+	`hugo new theme my-theme  # 自建主题目录`
 - 主要通过修改以下目录进行开发  
-	content : 文章内容  
-	themes/study-theme/layouts ：页面模板  
+	content : 文章内容
+	themes/my-theme/layouts ：页面模板  
 	static : 静态资源  
 	config.toml : 网站的配置文件
 
@@ -40,7 +43,7 @@ git remote add origin git@github.com:bayidatianshi/blog.git
 
 ```markup
 ---
-title: "文章标题"
+title: "page1"
 date: 2021-06-30T19:03:31+08:00
 draft: true
 keywords: "页面的关键字"
@@ -51,7 +54,7 @@ description: "内容描述, 主要用于SEO优化.包裹在---中的内容叫做
 文章正文：Hello world!
 ```
 
-- config.toml设置主题`theme = "study-theme"`
+- config.toml设置主题`theme = "my-theme"`
 - _default/single.html修改页面模板
 
 ```html
@@ -128,7 +131,7 @@ description: "内容描述, 主要用于SEO优化.包裹在---中的内容叫做
 - 访问`http://localhost:1313/post/`可以查看文章列表，文章内的页面跳转也可以用了
 
 ### 编写首页 ###
-- 添加_index.md、news文件夹到content文件夹，添加_index.md、news1.md、news2.md、news3.md到news文件夹，newsN.md的title为新闻标题N，weight为N
+- 添加_index.md、frontend文件夹到content文件夹，添加_index.md、news1.md、news2.md、news3.md到frontend文件夹，各自设置weight为N
 - content/_index.md为首页内容，对应模板在layouts/index.html
 - 修改index.html
 
@@ -146,14 +149,14 @@ description: "内容描述, 主要用于SEO优化.包裹在---中的内容叫做
 <body>
     <!-- .Site.RegularPages 表示网站下面的所有节点内容, 具体到本例, 就是news和post目录下的所有文章 -->
     <!-- where .Site.RegularPages "Section" "news" 的含义就是, 查找出section属性的值为news的项目,对应news文件夹下的文章 -->
-    <h2> 新闻列表 </h2>
-    {{ range where .Site.RegularPages "Section" "news" }}
+    <h2> frontend列表 </h2>
+    {{ range where .Site.RegularPages "Section" "frontend" }}
     <div>
         <a href="{{.Permalink}}">{{.Title}}</a>
     </div>
     {{ end }}
 
-    <h2> 博文列表 </h2>
+    <h2> post列表 </h2>
     {{ range where .Site.RegularPages "Section" "post" }}
     <div>
         <a href="{{.Permalink}}">{{.Title}}</a>

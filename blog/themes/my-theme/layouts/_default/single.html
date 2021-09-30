@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <div id="post" class="post">
+        <article>
+            <header>
+                <h1 class="post-title">{{.Title}}</h1><!-- 获取Front Matter中title的值 -->
+            </header>
+            <div>
+                <p>{{.Content}}</p> <!-- 获取文章的内容 -->
+                <p>{{.Date}}</p> <!-- 获取Front Matter中date的值 -->
+                <p>{{.Description}}</p> <!-- 获取Front Matter中description的值 -->
+                <p>{{.Keywords}}</p> <!-- 获取Front Matter中keywords的值 -->
+                <p>{{.Permalink}}</p> <!-- 获取页面的链接地址(URL) -->
+                <p>下一页：{{.Next}}</p> <!-- 下一个页面 -->
+                <p>上一页：{{.Prev}}</p> <!-- 上一个页面 -->
+                <p>{{.WordCount}}</p> <!-- 内容的字数 -->
+                <p>{{.ReadingTime}}</p> <!-- 阅读内容的预估时间 -->
+                <p>{{.Pages}}</p> <!-- 当前列表页面下的内容页面的集合, 该变量在内容页模板的上下文中值为nil -->
+                <p>{{.Site}}</p> <!-- 站点变量, 该变量下包含很多站点级别的属性和方法. -->
+            </div>
+            <hr>
+            <div>
+                <!-- 页面跳转：通过.NextInSection 和 .PrevInSection 变量实现，默认排序按时间倒序，可设置weight自定义顺序 -->
+                {{with .NextInSection}}
+                <a href="{{.Permalink}}">前一页</a> 
+                {{end}}
+                {{with .PrevInSection}}
+                <a href="{{.Permalink}}">后一页</a>
+                {{end}}
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>

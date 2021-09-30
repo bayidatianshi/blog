@@ -1,3 +1,51 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "My New Hugo Site"
+theme = "my-theme"
+
+# 主导航菜单
+name="首页"
+url="/"
+weight="1"
+[[menu.main]]
+name="post"
+url="/post"
+weight="2"
+[[menu.main]]
+name="frontend"
+url="/frontend"
+weight="3"
+[[menu.main]]
+name="关于"
+url="/about"
+weight="4"
+[[menu.main]]
+name="父菜单"
+Identifier="parentID1"
+weight="5"
+[[menu.main]]
+parent="parentID1"
+name="子菜单1"
+weight="1"
+[[menu.main]]
+parent="parentID1"
+name="子菜单2"
+weight="2"
+
+# 页脚导航菜单
+[[menu.foot]]
+name="网站首页"
+url="/"
+weight="4"
+[[menu.foot]]
+name="post"
+url="/post"
+weight="3"
+[[menu.foot]]
+name="frontend"
+url="/frontend"
+weight="2"
+[[menu.foot]]
+name="关于我们"
+url="/about"
+weight="1"
